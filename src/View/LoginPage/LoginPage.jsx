@@ -1,10 +1,11 @@
 import React from "react";
-import CarrouselBackground from "./CarrouselBackground";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { authenticationService } from "@/_services";
 
-import Styles from "!style-loader!css-loader!./styles.css";
+import { authenticationService } from "@/_services";
+import { CarrouselBackground } from "@/_components";
+
+import "./styles.css";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -12,16 +13,15 @@ class LoginPage extends React.Component {
 
     // redirect to home if already logged in
     if (authenticationService.currentUserValue) {
-      this.props.history.push("/");
+      this.props.history.push("/Dashboard");
     }
   }
 
   render() {
     return (
-      <div className={Styles.pageContainer}>
+      <div className="pageContainer">
         <CarrouselBackground />
-
-        <h1 className={Styles.titulo}>Login</h1>
+        <h1 classNam="titulo">Login</h1>
         <Formik
           initialValues={{
             username: "",
@@ -36,7 +36,7 @@ class LoginPage extends React.Component {
             authenticationService.login(username, password).then(
               user => {
                 const { from } = this.props.location.state || {
-                  from: { pathname: "/" }
+                  from: { pathname: "/Dashboard" }
                 };
                 this.props.history.push(from);
               },
@@ -47,15 +47,14 @@ class LoginPage extends React.Component {
             );
           }}
           render={({ errors, status, touched, isSubmitting }) => (
-            <Form className={Styles.form}>
+            <Form className="formulario">
               <div className="form-group">
                 <Field
-                  className=""
+                  placeholder="Username"
                   name="username"
                   type="text"
-                  placeholder="Username"
                   className={
-                    Styles.formulario +
+                    "form-control input-form" +
                     (errors.username && touched.username ? " is-invalid" : "")
                   }
                 />
@@ -71,7 +70,7 @@ class LoginPage extends React.Component {
                   name="password"
                   type="password"
                   className={
-                    Styles.formulario +
+                    "form-control input-form" +
                     (errors.password && touched.password ? " is-invalid" : "")
                   }
                 />
@@ -83,7 +82,7 @@ class LoginPage extends React.Component {
               </div>
               <div className="form-group">
                 <button
-                  className={Styles.button}
+                  className="botonOrange"
                   type="submit"
                   disabled={isSubmitting}
                 >

@@ -4,10 +4,8 @@ import { Router, Route, Link } from "react-router-dom";
 import { history } from "@/_helpers";
 import { authenticationService } from "@/_services";
 import { PrivateRoute } from "@/_components";
-import { HomePage } from "@/HomePage";
-import { LoginPage } from "@/LoginPage";
-
-import CarrouselBackground from "../LoginPage/CarrouselBackground";
+import { Dashboard } from "@/View/Dashboard";
+import { LoginPage } from "@/View/LoginPage";
 
 class App extends React.Component {
   constructor(props) {
@@ -37,8 +35,8 @@ class App extends React.Component {
           {currentUser && (
             <nav className="navbar navbar-expand navbar-dark bg-dark">
               <div className="navbar-nav">
-                <Link to="/" className="nav-item nav-link">
-                  Home
+                <Link to="/Dashboard" className="nav-item nav-link">
+                  Dashdoard
                 </Link>
                 <a onClick={this.logout} className="nav-item nav-link">
                   Logout
@@ -47,8 +45,8 @@ class App extends React.Component {
             </nav>
           )}
 
-          <PrivateRoute exact path="/" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
+          <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+          <Route exact path="/login" component={LoginPage} />
         </div>
       </Router>
     );

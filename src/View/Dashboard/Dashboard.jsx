@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { userService, authenticationService } from '@/_services';
+import { userService, authenticationService } from "@/_services";
 
-class HomePage extends React.Component {
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -23,16 +23,18 @@ class HomePage extends React.Component {
                 <h1>Hi {currentUser.firstName}!</h1>
                 <p>You're logged in with React & JWT!!</p>
                 <h3>Users from secure api end point:</h3>
-                {users &&
+                {users && (
                     <ul>
-                        {users.map(user =>
-                            <li key={user.id}>{user.firstName} {user.lastName}</li>
-                        )}
+                        {users.map(user => (
+                            <li key={user.id}>
+                                {user.firstName} {user.lastName}
+                            </li>
+                        ))}
                     </ul>
-                }
+                )}
             </div>
         );
     }
 }
 
-export { HomePage };
+export { Dashboard };
