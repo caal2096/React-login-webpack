@@ -1,11 +1,14 @@
 import React from "react";
-import { Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link, Switch } from "react-router-dom";
 
 import { history } from "@/_helpers";
 import { authenticationService } from "@/_services";
 import { PrivateRoute } from "@/_components";
 import { Dashboard } from "@/View/Dashboard";
 import { LoginPage } from "@/View/LoginPage";
+// import { LoginPage } from "../View/LoginPage/LoginPage";
+import { NotFound } from "@/View/NotFound";
+import { Dashboard2 } from "@/View/Dashboard2";
 
 class App extends React.Component {
   constructor(props) {
@@ -38,15 +41,23 @@ class App extends React.Component {
                 <Link to="/Dashboard" className="nav-item nav-link">
                   Dashdoard
                 </Link>
+
+                <Link to="/Dashboard2" className="nav-item nav-link">
+                  Dashdoard2
+                </Link>
+
                 <a onClick={this.logout} className="nav-item nav-link">
                   Logout
                 </a>
               </div>
             </nav>
           )}
-
-          <PrivateRoute exact path="/Dashboard" component={Dashboard} />
-          <Route exact path="/login" component={LoginPage} />
+          <Switch>
+            <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/Dashboard2" component={Dashboard2} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="*" component={NotFound} />
+          </Switch>
         </div>
       </Router>
     );

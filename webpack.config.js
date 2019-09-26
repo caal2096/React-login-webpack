@@ -1,5 +1,6 @@
-var HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -21,9 +22,21 @@ module.exports = {
           }
         ]
       },
+
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"]
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: "[name]__[local]--[hash:base64:5]"
+              }
+            }
+          }
+        ]
       }
     ]
   },
@@ -34,6 +47,8 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     })

@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { authenticationService } from "@/_services";
 import { CarrouselBackground } from "@/_components";
 
-import "./styles.css";
+import styles from "./styles.css";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -18,10 +18,11 @@ class LoginPage extends React.Component {
   }
 
   render() {
+    const { user, signOut, signWithGoogle } = this.props;
     return (
-      <div className="pageContainer">
+      <div className={styles.pageContainer}>
         <CarrouselBackground />
-        <h1 classNam="titulo">Login</h1>
+        <h1 className={styles.titulo}>Login</h1>
         <Formik
           initialValues={{
             username: "",
@@ -47,14 +48,14 @@ class LoginPage extends React.Component {
             );
           }}
           render={({ errors, status, touched, isSubmitting }) => (
-            <Form className="formulario">
+            <Form className={styles.formulario}>
               <div className="form-group">
                 <Field
                   placeholder="Username"
                   name="username"
                   type="text"
                   className={
-                    "form-control input-form" +
+                    "form-control" +
                     (errors.username && touched.username ? " is-invalid" : "")
                   }
                 />
@@ -70,7 +71,7 @@ class LoginPage extends React.Component {
                   name="password"
                   type="password"
                   className={
-                    "form-control input-form" +
+                    "form-control" +
                     (errors.password && touched.password ? " is-invalid" : "")
                   }
                 />
@@ -82,12 +83,13 @@ class LoginPage extends React.Component {
               </div>
               <div className="form-group">
                 <button
-                  className="botonOrange"
                   type="submit"
+                  className={styles.botonOrange}
                   disabled={isSubmitting}
                 >
                   Login
                 </button>
+
                 {isSubmitting && (
                   <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                 )}

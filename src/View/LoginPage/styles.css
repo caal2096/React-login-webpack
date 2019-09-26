@@ -1,6 +1,5 @@
-.body {
-    font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-    text-align: center;
+.red{
+    background:  red;
 }
 
 .pageContainer {
@@ -26,7 +25,7 @@
     text-align: center;
 }
 
-.input-form {
+.inputForm {
     width: 300px;
     height: 44px;
     margin-top: 25px;
@@ -40,11 +39,11 @@
   
 }
 
-.input-form:-moz-placeholder { color: #fff; }
-.input-form:-ms-input-placeholder { color: #fff; }
-.input-form::-webkit-input-placeholder { color: #fff; }
+.inputForm:-moz-placeholder { color: #fff; }
+.inputForm:-ms-input-placeholder { color: #fff; }
+.inputForm::-webkit-input-placeholder { color: #fff; }
 
-.input-form:focus {
+.inputForm:focus {
     color: black;
     outline: none;
     background: #777777;
